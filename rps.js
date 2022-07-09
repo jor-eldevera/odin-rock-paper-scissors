@@ -60,34 +60,39 @@ function playRound(playerSelection, computerSelection) {
 }
 
 /**
- * Plays five rounds of RPS then logs the winner at the end.
+ * Plays a round of RPS then updates the score
  */
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
-
-    // Run the game loop
-    for (let i = 0; i < 5; i++) {
-        let fullResult = playRound(prompt("Enter 'Rock', 'Paper', or 'Scissors'."), computerPlay());
-        console.log(fullResult);
-
-        let result = fullResult.charAt(4);
-        if (result === 'W') {
-            playerScore++;
-        } else if (result === 'L') {
-            computerScore++;
-        } else if (result === 'T') {
-            playerScore++;
-            computerScore++;
-        }
+function game(e) {
+    let fullResult = playRound(e.currentTarget.param, computerPlay());
+    console.log(fullResult)
+    let result = fullResult.charAt(4);
+    if (result === 'W') {
+        playerScore++;
+    } else if (result === 'L') {
+        computerScore++;
+    } else if (result === 'T') {
+        playerScore++;
+        computerScore++;
     }
+    checkScore();
+}
 
-    // Log the winner
-    if (playerScore > computerScore) {
-        console.log("Player wins! Score: " + playerScore + "-" + computerScore);
-    } else if (playerScore < computerScore) {
-        console.log("Player loses! Score: " + playerScore + "-" + computerScore);
-    } else {
-        console.log("Player ties computer! Score: " + playerScore + "-" + computerScore);
+let playerScore = 0;
+let computerScore = 0;
+const rockBtn = document.querySelector('.rock');
+rockBtn.addEventListener('click', game);
+rockBtn.param = 'Rock';
+
+const paperBtn = document.querySelector('.paper');
+paperBtn.addEventListener('click', game);
+paperBtn.param = 'Paper';
+
+const scisBtn = document.querySelector('.scissors');
+scisBtn.addEventListener('click', game);
+scisBtn.param = 'Scissors';
+
+function checkScore() {
+    if (playerScore === 5 || computerScore === 5) {
+
     }
 }
