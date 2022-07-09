@@ -98,9 +98,13 @@ scisBtn.param = 'Scissors';
 
 const playerScorePara = document.querySelector('.playerScore');
 const computerScorePara = document.querySelector('.computerScore');
+const winnerText = document.querySelector('.winner');
 
 function checkScore() {
-    if (playerScore === 5 || computerScore === 5) {
-
+    if (playerScore === 5) {
+        winnerText.textContent = 'Player wins!';
+    }
+    if (computerScore === 5) {
+        winnerText.textContent = 'Computer wins!';
     }
 }
