@@ -64,16 +64,21 @@ function playRound(playerSelection, computerSelection) {
  */
 function game(e) {
     let fullResult = playRound(e.currentTarget.param, computerPlay());
-    console.log(fullResult)
+    console.log(fullResult);
     let result = fullResult.charAt(4);
     if (result === 'W') {
         playerScore++;
+        playerScorePara.textContent = playerScore;
     } else if (result === 'L') {
         computerScore++;
+        computerScorePara.textContent = computerScore;
     } else if (result === 'T') {
         playerScore++;
         computerScore++;
+        playerScorePara.textContent = playerScore;
+        computerScorePara.textContent = computerScore;
     }
+
     checkScore();
 }
 
@@ -90,6 +95,9 @@ paperBtn.param = 'Paper';
 const scisBtn = document.querySelector('.scissors');
 scisBtn.addEventListener('click', game);
 scisBtn.param = 'Scissors';
+
+const playerScorePara = document.querySelector('.playerScore');
+const computerScorePara = document.querySelector('.computerScore');
 
 function checkScore() {
     if (playerScore === 5 || computerScore === 5) {
